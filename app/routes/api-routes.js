@@ -64,5 +64,18 @@ module.exports = function (app) {
         res.end();
       });
     });
+
+    app.delete("/api/delete", function (req, res) {
+      var dbQuery = "DELETE FROM burgers WHERE id = ?";
+      var id = req.body.id;
+      console.log(req);
+      connection.query(dbQuery, [id], function (err, result) {
+        if (err) throw err;
+        res.json(result);
+        console.log("you have successfully deleted id :" + id);
+        // res.redirect("/");
+        res.end();
+      });
+    });
   });
 };

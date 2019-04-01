@@ -14,7 +14,7 @@ $.get("/api/all", function (data) {
   }
 });
 
-// When user burgers (clicks addBtn)
+// When user clicks submit Btn to add burgers 
 $("#burger-submit").on("click", function (event) {
   event.preventDefault();
 
@@ -23,31 +23,34 @@ $("#burger-submit").on("click", function (event) {
     burgerName: $("#burgerName").val().trim(),
     // updateBurger: $("#updateBurger").val().trim(),
   };
-
   console.log(newburger);
 
   // Send an AJAX POST-request with jQuery
   $.post("/api/new", newburger)
     //   // On success, run the following code
     .then(function (resBurger) {
-      //     connection.query("SELECT * FROM products", function (err, results) {
       console.log(resBurger);
-      //       if (err) throw err;
-      //     var row = $("<div>");
-      //     row.addClass("burger");
-
-      //     row.append("<p>" + newburger.devoured + " burgered: </p>");
-      //     // row.append("<p>" + newburger.body + "</p>");
-      //     // row.append("<p>At " + moment(newburger.burgerName).format("h:mma on dddd") + "</p>");
-
-      //     $("#burger-area").prepend(row);
-
     });
-
-  // prompt for info abou
-
   // Empty each input box by replacing the value with an empty string
   $("#burgerName").val("");
-  $("#updateBurger-box").val("");
-  // })
+
+});
+
+//When user clicks devour button
+$("devouredBtn").on("click", function (event) {
+  event.preventDefault();
+  console.log("delete button pressed");
+  // Get the ID from the button.
+  var id = $(this).data("burgerNameid");
+  console.log(id);
+  // Send the DELETE request.
+  $.ajax("/api/delete/" + id, {
+    type: "DELETE"
+  }).then(
+    function () {
+      console.log("deleted id ", id);
+      // Reload the page to get the updated list
+      location.reload();
+    }
+  );
 });
