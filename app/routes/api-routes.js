@@ -4,18 +4,25 @@
 
 // Dependencies
 // =============================================================
+
 var connection = require("../config/connection.js");
+
 
 // Routes
 // =============================================================
 module.exports = function (app) {
+  // get route -> index
+  app.get("/", function (req, res) {
+    res.redirect("/api/all");
+  });
   // Get all burgers
   app.get("/api/all", function (req, res) {
     var dbQuery = "SELECT * FROM burgers";
 
     connection.query(dbQuery, function (err, result) {
       if (err) throw err;
-      res.json(result);
+      // res.json(result);
+      res.render("index", { burgers: result });
     });
   });
   //
@@ -32,15 +39,17 @@ module.exports = function (app) {
     console.log("burger Data:" + req);
     console.log(req.body);
 
-    var dbQuery = "INSERT INTO burgers (burger_name, updateBurger) VALUES (?,?)";
+    var dbQuery = "INSERT INTO burgers (burger_name, devoured) VALUES (?,?)";
     // id: 2,
     // burgerType: "burger2",
     // devoured: false
-    connection.query(dbQuery, [burgerName, 1], function (err, result) {
-      // connection.query(dbQuery, [id, req.body.burgerName, req.body.devoured], function (err, result) {
+    // connection.query(dbQuery, [burgerName, 0], function (err, result) {
+    connection.query(dbQuery, [req.body.burgerName, 0], function (err, result) {
       if (err) throw err;
       res.json(result);
       console.log("burger created Successfully!");
+
+      // res.redirect("/");
       res.end();
     });
 
@@ -51,6 +60,7 @@ module.exports = function (app) {
         if (err) throw err;
         res.json(result);
         console.log("you have successfully deleted id :" + id);
+        // res.redirect("/");
         res.end();
       });
     });

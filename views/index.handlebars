@@ -1,12 +1,41 @@
-bu
-<!-- 5. Output the burgerType string, pet boolean and fierceness number to the page for all the burgers. -->
-<ul>
-    {{#each burgers}}
-    <li>
+<div class="jumbotron">
+    <h1 class="text-center">Eat the Burger!</h1>
+</div>
 
-        <p>burger_name: {{burger_name}}</p>
-        <p>id: {{id}}</p>
-        <p>devoured: {{devoured}}</p>
-    </li>
-    {{/each}}
-</ul>
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <p class="cool-font">Enter the burger</p>
+            <div class="blue-border"><input class="form-control" type="text" id="burgerName" placeholder="Cheeseburger">
+            </div>
+            <br>
+            {{!-- <p class="cool-font">Update burger</p>
+            <textarea class="form-control" rows="3" id="updateBurger" placeholder="Enter burger Here!"></textarea> --}}
+            <button id="burger-submit" class="btn btn-lg pull-right">Submit!</button>
+        </div>
+        <br>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            {{#each burgers}}
+            <div class="card">
+                <div class="white-border">
+                    <p class="cool-font"><strong> {{burger_name}}</strong></p>
+
+                    <ul>
+                        <li>
+                            <p>burger_name: {{burger_name}}</p>
+                            <p>id: {{id}}</p>
+                            <p>devoured: {{devoured}}</p>
+                        </li>
+                    </ul>
+                    <div> <button id="burger-devourer" class="btn btn-lg pull-right">Devour the Burger!</button>
+                    </div>
+                </div>
+            </div><br>
+            {{/each}}
+        </div>
+    </div>
+</div>

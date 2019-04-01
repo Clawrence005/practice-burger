@@ -8,7 +8,7 @@ $.get("/api/all", function (data) {
       row.addClass("burger");
       row.append("<p>" + data[i].burgerName + " burgered.. </p>");
       row.append("<p>" + data[i].body + "</p>");
-      row.append("<p>" + data[i].updateBurger + "</p>");
+      // row.append("<p>" + data[i].updateBurger + "</p>");
       $("#burger-area").prepend(row);
     }
   }
@@ -21,33 +21,33 @@ $("#burger-submit").on("click", function (event) {
   // Make a newburger object
   var newburger = {
     burgerName: $("#burgerName").val().trim(),
-    updateBurger: $("#updateBurger").val().trim(),
+    // updateBurger: $("#updateBurger").val().trim(),
   };
 
   console.log(newburger);
 
   // Send an AJAX POST-request with jQuery
-  // $.post("/api/new", newburger)
-  //   //   // On success, run the following code
-  //   .then(function () {
-  //     connection.query("SELECT * FROM products", function (err, results) {
-  //       console.log(results);
-  //       if (err) throw err;
-  //     var row = $("<div>");
-  //     row.addClass("burger");
+  $.post("/api/new", newburger)
+    //   // On success, run the following code
+    .then(function (resBurger) {
+      //     connection.query("SELECT * FROM products", function (err, results) {
+      console.log(resBurger);
+      //       if (err) throw err;
+      //     var row = $("<div>");
+      //     row.addClass("burger");
 
-  //     row.append("<p>" + newburger.devoured + " burgered: </p>");
-  //     // row.append("<p>" + newburger.body + "</p>");
-  //     // row.append("<p>At " + moment(newburger.burgerName).format("h:mma on dddd") + "</p>");
+      //     row.append("<p>" + newburger.devoured + " burgered: </p>");
+      //     // row.append("<p>" + newburger.body + "</p>");
+      //     // row.append("<p>At " + moment(newburger.burgerName).format("h:mma on dddd") + "</p>");
 
-  //     $("#burger-area").prepend(row);
+      //     $("#burger-area").prepend(row);
 
+    });
+
+  // prompt for info abou
+
+  // Empty each input box by replacing the value with an empty string
+  $("#burgerName").val("");
+  $("#updateBurger-box").val("");
+  // })
 });
-
-// prompt for info abou
-
-// Empty each input box by replacing the value with an empty string
-$("#burgerName").val("");
-$("#updateBurger-box").val("");
-    // })
-// });
