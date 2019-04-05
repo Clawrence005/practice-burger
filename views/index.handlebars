@@ -12,7 +12,12 @@
             <br>
             {{!-- <p class="cool-font">Update burger</p>
             <textarea class="form-control" rows="3" id="updateBurger" placeholder="Enter burger Here!"></textarea> --}}
-            <button id="burger-submit" class="btn btn-lg pull-right">Submit!</button>
+
+            <form action="/" method="POST">
+                <textarea type="text" name="task"></textarea>
+
+                <button id="burger-submit" class="btn btn-lg pull-right">Submit!</button>
+            </form>
         </div>
         <br>
     </div>
@@ -31,7 +36,8 @@
                             <p>devoured: {{devoured}}</p>
                         </li>
                     </ul>
-                    <div> <button class="btn devouredBtn btn-lg pull-right">Devour the Burger!</button>
+                    <div> <button class="btn devouredBtn btn-lg pull-right" data-burger-id="{{this.id}}">Devour the
+                            Burger!</button>
                     </div>
                 </div>
             </div><br>

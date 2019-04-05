@@ -1,7 +1,8 @@
-
 var express = require("express");
+require("dotenv").config();
 var app = express();
 var PORT = process.env.PORT || 3000;
+
 var exphbs = require("express-handlebars");
 
 app.use(express.static("app/public"));
@@ -13,8 +14,8 @@ app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-require("./app/routes/api-routes.js")(app);
+require("./app/controllers/burger-controller.js")(app);
 
-app.listen(PORT, function () {
+app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });

@@ -4,18 +4,19 @@
 
 // Require mysql
 var mysql = require("mysql");
-
+var keys = require("./keys");
+var secret = keys.secretPassword.secret;
 // Set up our connection information
 var connection = mysql.createConnection({
   port: 3306,
   host: "localhost",
   user: "root",
-  password: "password",
+  password: secret,
   database: "burgers_db"
 });
 
 // Connect to the database
-connection.connect(function (err) {
+connection.connect(function(err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
